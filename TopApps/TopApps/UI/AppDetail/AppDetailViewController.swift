@@ -9,40 +9,43 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class AppDetailViewController: UIViewController {
-    @IBOutlet weak var collectionView: UICollectionView!
+class AppDetailViewController: UIViewController, AppStoreShowable {
+    @IBOutlet weak var iconImageView: UIImageView!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var companyLabel: UILabel!
+    @IBOutlet weak var categoryLabel: UILabel!
+    @IBOutlet weak var textLabel: UILabel!
+    @IBOutlet weak var getButton: UIButton!
     
-    var item: Response.Entry?
-    let viewModel = AppDetailViewModel()
-    var disposeBag = DisposeBag()
+    let inItem: BehaviorSubject<TopAppsItem.Entry?> = BehaviorSubject(value: nil)
+    let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.largeTitleDisplayMode = .never
-    }
-    
-    func setup(item: Response.Entry) {
-        view.layoutIfNeeded()
-        navigationItem.largeTitleDisplayMode = .never
-//        title = item.title?.label
+        iconImageView.layer.cornerRadius = 25
         bind()
-        viewModel.fetchData(item: item)
     }
     
     func bind() {
-        // Register Cells
-        collectionView.register(UINib(nibName: "AppDetailInfoCell", bundle: nil), forCellWithReuseIdentifier: "AppDetailInfoCell")
-        
-        // Cell Selected
-        collectionView.rx.modelSelected(CellItem.self).subscribe(onNext: { [weak self] item in
-            item.cellSelectedHandler?(self)
+        // Item
+        inItem.filter { $0 != nil }.map { $0! }.subscribe(onNext: { [weak self] item in
+            self?.iconImageView.setImage(urlString: item.imImage?.last?.label ?? "")
+            self?.titleLabel.text = item.title?.label
+            self?.companyLabel.text = item.imArtist?.label
+            self?.categoryLabel.text = item.category?.attributes?.label
+            self?.textLabel.text = item.summary?.label
+            self?.getButton.setTitle(item.imPrice?.label, for: .normal)
         }).disposed(by: disposeBag)
         
-        // ViewModel Output : Items
-        viewModel.output.items.bind(to: collectionView.rx.items) { collectionView, row, item in
-            item.cellMakingHandler(collectionView, IndexPath(row: row, section: 0))
-        }.disposed(by: disposeBag)
+        // Get Button Event
+        getButton.rx.tap.withLatestFrom(inItem).do(onNext: { _ in
+            UIImpactFeedbackGenerator(style: .light).impactOccurred()
+        }).subscribe(onNext: { [weak self] item in
+            guard let self = self else { return }
+            guard let appId = item?.id?.attributes?.imid else { return }
+            self.showAppStore(appId: appId, sender: self)
+        }).disposed(by: disposeBag)
     }
-    
 }
 

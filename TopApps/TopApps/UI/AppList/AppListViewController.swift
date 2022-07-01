@@ -12,18 +12,36 @@ import RxCocoa
 class AppListViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var indicatorView: UIActivityIndicatorView!
+    
     let viewModel = AppListViewModel()
+    let inAppListType: BehaviorSubject<AppListType> = BehaviorSubject(value: .free)
     let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Top Apps"
+        // Bind RX
         bind()
+        
         // ViewModel Fetch Data
         viewModel.fetchData()
     }
     
     func bind() {
+        // Title
+        inAppListType.subscribe(onNext: { [weak self] type in
+            switch type {
+            case .free:
+                self?.title = "TOP FREE APPS"
+            case .paid:
+                self?.title = "TOP PAID APPS"
+            case .grossing:
+                self?.title = "TOP GROSSING APPS"
+            }
+        }).disposed(by: disposeBag)
+        
+        // Collection View Delegate
+        collectionView.rx.setDelegate(self).disposed(by: disposeBag)
+        
         // Register Cells
         collectionView.register(UINib(nibName: "AppListCell", bundle: nil), forCellWithReuseIdentifier: "AppListCell")
         
@@ -32,20 +50,24 @@ class AppListViewController: UIViewController {
             item.cellSelectedHandler?(self)
         }).disposed(by: disposeBag)
         
+        // Bind AppListType to ViewModel
+        inAppListType.bind(to: viewModel.inAppListType).disposed(by: disposeBag)
+        
         // ViewModel Output : Items
-        viewModel.output.items.bind(to: collectionView.rx.items) { collectionView, row, item in
-            item.cellMakingHandler(collectionView, IndexPath(row: row, section: 0))
+        viewModel.outItems.bind(to: collectionView.rx.items) { [weak self] collectionView, row, item in
+            item.cellMakingHandler?(self, collectionView, IndexPath(row: row, section: 0)) ?? UICollectionViewCell()
         }.disposed(by: disposeBag)
         
         // ViewModel Output : Error
-        viewModel.output.error.subscribe(onNext: { [weak self] (statusCode: Int?, error: Error?) in
-            self?.showAlert(message: error?.localizedDescription, retryHandler: {
-                self?.viewModel.fetchData()
+        viewModel.outError.subscribe(onNext: { [weak self] (statusCode: Int?, error: Error?) in
+            guard let self = self else { return }
+            self.showAlert(message: error?.localizedDescription, retryHandler: {
+                self.viewModel.fetchData()
             })
         }).disposed(by: disposeBag)
         
         // ViewModel Output : Loading
-        viewModel.output.loading.map { !$0 }.bind(to: indicatorView.rx.isHidden).disposed(by: disposeBag)
+        viewModel.outLoading.map { !$0 }.bind(to: indicatorView.rx.isHidden).disposed(by: disposeBag)
     }
     
     func showAlert(message: String?, retryHandler: (() -> Void)?) {
@@ -54,5 +76,11 @@ class AppListViewController: UIViewController {
             retryHandler?()
         }))
         present(alertController, animated: true)
+    }
+}
+
+extension AppListViewController: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: collectionView.frame.size.width, height: 70)
     }
 }

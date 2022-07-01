@@ -7,23 +7,28 @@
 
 import UIKit
 import RxSwift
-import RxRelay
 
-class AppListCellItem: CellItem {
-    var cellMakingHandler: CellMakingHandler
+class AppListCellItem: CellItem, AppStoreShowable {
+    var cellMakingHandler: CellMakingHandler?
     var cellSelectedHandler: CellSelectedHandler?
-    var disposeBag = DisposeBag()
+    let outGetApp = PublishSubject<TopAppsItem.Entry>()
     
-    init(item: Response.Entry) {
-        cellMakingHandler = { collectionView, indexPath in
+    init(item: TopAppsItem.Entry) {
+        cellMakingHandler = { [weak self] sender, collectionView, indexPath in
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AppListCell", for: indexPath) as! AppListCell
-            cell.setup(item: item, ranking: indexPath.row + 1)
+            cell.inItem.onNext(item)
+            cell.inRanking.onNext(indexPath.row + 1)
+            cell.outGetApp.subscribe(onNext: {
+                guard let appId = item.id?.attributes?.imid else { return }
+                guard let sender = sender else { return }
+                self?.showAppStore(appId: appId, sender: sender)
+            }).disposed(by: cell.disposeBag)
             return cell
         }
         
         cellSelectedHandler = { sender in
             guard let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "AppDetailViewController") as? AppDetailViewController else { return }
-            viewController.setup(item: item)
+            viewController.inItem.onNext(item)
             sender?.navigationController?.pushViewController(viewController, animated: true)
         }
     }

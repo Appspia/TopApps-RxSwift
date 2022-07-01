@@ -6,55 +6,26 @@
 //
 
 import Foundation
-import Alamofire
+import ASNetworking
 import RxSwift
 
-public struct Response {}
-
-enum APIError: Error {
-    case httpError(Data?, HTTPURLResponse?, Error?)
+enum AppListType: String {
+    case free = "topfreeapplications"
+    case paid = "toppaidapplications"
+    case grossing = "topgrossingapplications"
 }
 
-enum API: String {
-    case dev
-    case staging
-    case production
+enum API<T: Codable>: ASNetworking {
+    case topApps(type: AppListType)
 }
 
 extension API {
-    var baseUrl: String {
+    var request: Observable<T> {
+        let requestData: ASRequestData
         switch self {
-        case .dev:
-            return "https://itunes.apple.com"
-        case .staging:
-            return "https://itunes.apple.com"
-        case .production:
-            return "https://itunes.apple.com"
+        case .topApps(let type):
+            requestData = ASRequestData(urlString: server.rawValue + "/US/rss/\(type.rawValue)/limit=100/json", httpMethod: .get)
         }
-    }
-    
-    var commonHeader: HTTPHeaders {
-        let header: HTTPHeaders = [
-            "Content-Type": "application/json"
-        ]
-        return header
-    }
-}
-
-extension API {
-    func rxHttpRequest<T: Codable>(request: DataRequest) -> Single<T> {
-        return Single<T>.create { single -> Disposable in
-            request.responseDecodable(of: T.self) { response in
-                switch response.result {
-                case .success(let item):
-                    single(.success(item))
-                case .failure(let error):
-                    single(.failure(APIError.httpError(response.data, response.response, error)))
-                }
-            }
-            return Disposables.create {
-                request.cancel()
-            }
-        }
+        return httpRequestRx(requestData: requestData, isLogging: false)
     }
 }

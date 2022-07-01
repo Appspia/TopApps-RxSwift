@@ -1,41 +1,19 @@
 //
-//  API+TopApps.swift
+//  TopAppsItem.swift
 //  TopApps
 //
-//  Created by APPSPIA on 2022/06/14.
+//  Created by APPSPIA on 2022/06/29.
 //
 
 import Foundation
-import Alamofire
-import RxSwift
 
-extension Response {
+enum TopAppsItem {
     struct TopApps: Codable {
         let feed: Feed
     }
 
     struct Feed: Codable {
-        let author: Author?
         var entry: [Entry]
-        let updated: Rights?
-        let rights: Rights?
-        let title: Rights?
-        let icon: Icon?
-        let link: [FeedLink]?
-        let id: Feedid?
-    }
-
-    struct Author: Codable {
-        let name: Rights?
-        let uri: URI?
-    }
-
-    struct Rights: Codable {
-        let label: String?
-    }
-
-    struct URI: Codable {
-        let label: String?
     }
 
     struct Entry: Codable {
@@ -46,7 +24,6 @@ extension Response {
         let imContentType: IMContentType?
         let rights: Rights?
         let title: Rights?
-        let link: [EntryLink]?
         var id: Entryid?
         let imArtist: IMArtist?
         let category: Category?
@@ -60,12 +37,15 @@ extension Response {
             case imContentType = "im:contentType"
             case rights
             case title
-            case link
             case id
             case imArtist = "im:artist"
             case category
             case imReleaseDate = "im:releaseDate"
         }
+    }
+    
+    struct Rights: Codable {
+        let label: String?
     }
 
     struct Category: Codable {
@@ -86,6 +66,10 @@ extension Response {
 
     struct IDAttributes: Codable {
         let imid: String?
+        
+        private enum CodingKeys: String, CodingKey {
+            case imid = "im:id"
+        }
     }
 
     struct IMArtist: Codable {
@@ -130,46 +114,9 @@ extension Response {
         let attributes: Rights?
     }
 
-    struct EntryLink: Codable {
-        let attributes: PurpleAttributes?
-    }
-
-    struct PurpleAttributes: Codable {
-        let rel: String?
-        let type: String?
-        let href: String?
-    }
-
-    struct Icon: Codable {
-        let label: String?
-    }
-
-    struct Feedid: Codable {
-        let label: String?
-    }
-
-    struct FeedLink: Codable {
-        var attributes: FluffyAttributes?
-    }
-    
-    struct LinkElement: Codable {
-        let attributes: FluffyAttributes?
-    }
-
     struct FluffyAttributes: Codable {
         let rel: String?
         let type: String?
         let href: String?
     }
-
 }
-
-extension API {
-    func topApps() -> Single<Response.TopApps> {
-        let urlString = baseUrl + "/KR/rss/topfreeapplications/limit=100/json"
-        let request = AF.request(urlString, method: .get, parameters: nil, headers: commonHeader)
-        return rxHttpRequest(request: request).debug()
-    }
-}
-
-
