@@ -1,0 +1,23 @@
+{
+  "pins" : [
+    {
+      "identity" : "asnetworking",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Appspia/ASNetworking",
+      "state" : {
+        "revision" : "c5fe005dea1a57dcb81b448fb453df53632f4def",
+        "version" : "1.0.0"
+      }
+    },
+    {
+      "identity" : "rxswift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/ReactiveX/RxSwift",
+      "state" : {
+        "revision" : "b4307ba0b6425c0ba4178e138799946c3da594f8",
+        "version" : "6.5.0"
+      }
+    }
+  ],
+  "version" : 2
+}
