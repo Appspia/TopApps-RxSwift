@@ -16,7 +16,7 @@ enum APIError: Error {
 
 extension ASNetworking {
     func httpRequestRx<T: Codable>(requestData: ASRequestData, isLogging: Bool) -> Observable<T> {
-        return Observable<T>.create { observer -> Disposable in
+        return Observable<T>.create { observer in
             let response = httpRequest(requestData: requestData).response { (result: ASHttpResult<T>) in
                 switch result {
                 case .success(let item):

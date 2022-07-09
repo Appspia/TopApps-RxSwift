@@ -17,7 +17,7 @@ class AppDetailViewController: UIViewController, AppStoreShowable {
     @IBOutlet weak var textLabel: UILabel!
     @IBOutlet weak var getButton: UIButton!
     
-    let inItem: BehaviorSubject<TopAppsItem.Entry?> = BehaviorSubject(value: nil)
+    let inItem = BehaviorSubject<TopAppsItem.Entry?>(value: nil)
     let disposeBag = DisposeBag()
     
     override func viewDidLoad() {

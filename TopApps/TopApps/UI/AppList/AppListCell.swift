@@ -16,7 +16,7 @@ class AppListCell: UICollectionViewCell {
     @IBOutlet weak var infoLabel: UILabel!
     @IBOutlet weak var getButton: UIButton!
     
-    let inItem: BehaviorSubject<TopAppsItem.Entry?> = BehaviorSubject(value: nil)
+    let inItem = BehaviorSubject<TopAppsItem.Entry?>(value: nil)
     let inRanking = PublishSubject<Int>()
     let outGetApp = PublishSubject<Void>()
     var disposeBag = DisposeBag()
