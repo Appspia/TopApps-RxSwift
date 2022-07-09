@@ -10,8 +10,8 @@ import RxSwift
 import RxCocoa
 
 class AppListViewModel {
-    let inAppListType: BehaviorSubject<AppListType> = BehaviorSubject(value: .free)
-    let outItems : BehaviorSubject<[CellItem]> = BehaviorSubject(value: [])
+    let inAppListType = BehaviorSubject<AppListType>(value: .free)
+    let outItems = BehaviorSubject<[CellItem]>(value: [])
     let outError = PublishSubject<(statusCode: Int?, error: Error?)>()
     let outLoading = PublishSubject<Bool>()
     let disposeBag = DisposeBag()

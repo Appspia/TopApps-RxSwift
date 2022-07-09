@@ -14,7 +14,7 @@ class AppListViewController: UIViewController {
     @IBOutlet weak var indicatorView: UIActivityIndicatorView!
     
     let viewModel = AppListViewModel()
-    let inAppListType: BehaviorSubject<AppListType> = BehaviorSubject(value: .free)
+    let inAppListType = BehaviorSubject<AppListType>(value: .free)
     let disposeBag = DisposeBag()
     
     override func viewDidLoad() {

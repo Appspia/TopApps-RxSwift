@@ -5,8 +5,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Appspia/ASNetworking",
       "state" : {
-        "revision" : "c5fe005dea1a57dcb81b448fb453df53632f4def",
-        "version" : "1.0.0"
+        "revision" : "29393a66a3f7b1390c8ad92508b803b029af5b88",
+        "version" : "1.0.2"
       }
     },
     {
