@@ -22,7 +22,7 @@ class AppListCellItem: CellItem, AppStoreShowable {
                 guard let appId = item.id?.attributes?.imid else { return }
                 guard let sender = sender else { return }
                 self?.showAppStore(appId: appId, sender: sender)
-            }).disposed(by: cell.disposeBag)
+            }).disposed(by: cell.outDisposeBag)
             return cell
         }
         

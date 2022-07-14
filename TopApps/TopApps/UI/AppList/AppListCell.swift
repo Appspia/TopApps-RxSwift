@@ -19,7 +19,8 @@ class AppListCell: UICollectionViewCell {
     let inItem = BehaviorSubject<TopAppsItem.Entry?>(value: nil)
     let inRanking = PublishSubject<Int>()
     let outGetApp = PublishSubject<Void>()
-    var disposeBag = DisposeBag()
+    private var disposeBag = DisposeBag()
+    var outDisposeBag = DisposeBag()
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -29,8 +30,7 @@ class AppListCell: UICollectionViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        disposeBag = DisposeBag()
-        bind()
+        outDisposeBag = DisposeBag()
     }
     
     override func preferredLayoutAttributesFitting(_ layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
