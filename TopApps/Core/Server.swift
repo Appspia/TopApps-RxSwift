@@ -8,5 +8,6 @@
 import Foundation
 
 enum Server: String {
+    case dev = ""
     case production = "https://itunes.apple.com"
 }

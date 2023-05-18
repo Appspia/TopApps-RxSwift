@@ -8,38 +8,50 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import Kingfisher
 
 class AppDetailViewController: UIViewController, AppStoreShowable {
-    @IBOutlet weak var iconImageView: UIImageView!
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var companyLabel: UILabel!
-    @IBOutlet weak var categoryLabel: UILabel!
-    @IBOutlet weak var textLabel: UILabel!
-    @IBOutlet weak var getButton: UIButton!
+    lazy var contentView = AppDetailView()
     
     let inItem = BehaviorSubject<TopAppsItem.Entry?>(value: nil)
     let disposeBag = DisposeBag()
     
+    override func loadView() {
+        view = contentView
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.largeTitleDisplayMode = .never
-        iconImageView.layer.cornerRadius = 25
         bind()
     }
     
     func bind() {
         // Item
-        inItem.filter { $0 != nil }.map { $0! }.subscribe(onNext: { [weak self] item in
-            self?.iconImageView.setImage(urlString: item.imImage?.last?.label ?? "")
-            self?.titleLabel.text = item.title?.label
-            self?.companyLabel.text = item.imArtist?.label
-            self?.categoryLabel.text = item.category?.attributes?.label
-            self?.textLabel.text = item.summary?.label
-            self?.getButton.setTitle(item.imPrice?.label, for: .normal)
+        let item = inItem.compactMap { $0 }
+        
+        // App Icon Image
+        item.map { URL(string: $0.imImage?.last?.label ?? "") }.subscribe(onNext: { [weak self] url in
+            self?.contentView.iconImageView.kf.setImage(with: url)
         }).disposed(by: disposeBag)
         
+        // Title Label
+        item.map { $0.title?.label }.bind(to: contentView.titleLabel.rx.text).disposed(by: disposeBag)
+        
+        // Company Label
+        item.map { $0.imArtist?.label }.bind(to: contentView.companyLabel.rx.text).disposed(by: disposeBag)
+        
+        // Category Label
+        item.map { $0.category?.attributes?.label }.bind(to: contentView.categoryLabel.rx.text).disposed(by: disposeBag)
+        
+        // Description Label
+        item.map { $0.summary?.label }.bind(to: contentView.descriptionLabel.rx.text).disposed(by: disposeBag)
+        
+        // Get Button
+        item.map { $0.imPrice?.label }.bind(to: contentView.getButton.rx.title()).disposed(by: disposeBag)
+
         // Get Button Event
-        getButton.rx.tap.withLatestFrom(inItem).do(onNext: { _ in
+        contentView.getButton.rx.tap.withLatestFrom(inItem).do(onNext: { _ in
             UIImpactFeedbackGenerator(style: .light).impactOccurred()
         }).subscribe(onNext: { [weak self] item in
             guard let self = self else { return }

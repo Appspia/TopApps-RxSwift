@@ -27,7 +27,7 @@ class AppListCellItem: CellItem, AppStoreShowable {
         }
         
         cellSelectedHandler = { sender in
-            guard let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "AppDetailViewController") as? AppDetailViewController else { return }
+            let viewController = AppDetailViewController()
             viewController.inItem.onNext(item)
             sender?.navigationController?.pushViewController(viewController, animated: true)
         }

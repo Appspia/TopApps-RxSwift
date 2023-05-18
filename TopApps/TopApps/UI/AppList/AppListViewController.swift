@@ -10,12 +10,15 @@ import RxSwift
 import RxCocoa
 
 class AppListViewController: UIViewController {
-    @IBOutlet weak var collectionView: UICollectionView!
-    @IBOutlet weak var indicatorView: UIActivityIndicatorView!
+    lazy var contentView = AppListView()
     
     let viewModel = AppListViewModel()
     let inAppListType = BehaviorSubject<AppListType>(value: .free)
     let disposeBag = DisposeBag()
+    
+    override func loadView() {
+        view = contentView
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,14 +42,8 @@ class AppListViewController: UIViewController {
             }
         }).disposed(by: disposeBag)
         
-        // Collection View Delegate
-        collectionView.rx.setDelegate(self).disposed(by: disposeBag)
-        
-        // Register Cells
-        collectionView.register(UINib(nibName: "AppListCell", bundle: nil), forCellWithReuseIdentifier: "AppListCell")
-        
         // Cell Selected
-        collectionView.rx.modelSelected(CellItem.self).subscribe(onNext: { [weak self] item in
+        contentView.collectionView.rx.modelSelected(CellItem.self).subscribe(onNext: { [weak self] item in
             item.cellSelectedHandler?(self)
         }).disposed(by: disposeBag)
         
@@ -54,7 +51,7 @@ class AppListViewController: UIViewController {
         inAppListType.bind(to: viewModel.inAppListType).disposed(by: disposeBag)
         
         // ViewModel Output : Items
-        viewModel.outItems.bind(to: collectionView.rx.items) { [weak self] collectionView, row, item in
+        viewModel.outItems.bind(to: contentView.collectionView.rx.items) { [weak self] collectionView, row, item in
             item.cellMakingHandler?(self, collectionView, IndexPath(row: row, section: 0)) ?? UICollectionViewCell()
         }.disposed(by: disposeBag)
         
@@ -67,7 +64,7 @@ class AppListViewController: UIViewController {
         }).disposed(by: disposeBag)
         
         // ViewModel Output : Loading
-        viewModel.outLoading.map { !$0 }.bind(to: indicatorView.rx.isHidden).disposed(by: disposeBag)
+        viewModel.outLoading.map { !$0 }.bind(to: contentView.indicatorView.rx.isHidden).disposed(by: disposeBag)
     }
     
     func showAlert(message: String?, retryHandler: (() -> Void)?) {
@@ -76,11 +73,5 @@ class AppListViewController: UIViewController {
             retryHandler?()
         }))
         present(alertController, animated: true)
-    }
-}
-
-extension AppListViewController: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.frame.size.width, height: 70)
     }
 }

@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		340FB64A2A146E740000D2C9 /* AppListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340FB6492A146E740000D2C9 /* AppListView.swift */; };
+		340FB64C2A146F030000D2C9 /* LayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340FB64B2A146F030000D2C9 /* LayoutView.swift */; };
+		340FB64F2A146F740000D2C9 /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = 340FB64E2A146F740000D2C9 /* Then */; };
+		340FB6522A146FA40000D2C9 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 340FB6512A146FA40000D2C9 /* SnapKit */; };
+		340FB6542A1483980000D2C9 /* RxCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340FB6532A1483980000D2C9 /* RxCollectionViewCell.swift */; };
+		340FB6562A149A7D0000D2C9 /* AppDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340FB6552A149A7D0000D2C9 /* AppDetailView.swift */; };
+		340FB65F2A15C91E0000D2C9 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 340FB65E2A15C91E0000D2C9 /* Kingfisher */; };
 		34A476DE2858CA700023D30B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A476DD2858CA700023D30B /* AppDelegate.swift */; };
 		34A476E02858CA700023D30B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A476DF2858CA700023D30B /* SceneDelegate.swift */; };
 		34A476E72858CA710023D30B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 34A476E62858CA710023D30B /* Assets.xcassets */; };
@@ -25,13 +32,11 @@
 		34D8BB08286C6F9900CD47DA /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D8BB07286C6F9900CD47DA /* Preferences.swift */; };
 		34D8BB0F286CA0A100CD47DA /* AppStoreShowable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D8BB0E286CA0A100CD47DA /* AppStoreShowable.swift */; };
 		34D94BB02858D4D300502401 /* CellItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D94BAF2858D4D300502401 /* CellItem.swift */; };
-		34D94BB22858D4E700502401 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 34D94BB12858D4E700502401 /* Main.storyboard */; };
 		34D94BBA2858D5ED00502401 /* AppListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D94BB52858D5ED00502401 /* AppListViewController.swift */; };
 		34D94BBB2858D5ED00502401 /* AppListCellItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D94BB62858D5ED00502401 /* AppListCellItem.swift */; };
 		34D94BBD2858D5ED00502401 /* AppListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D94BB82858D5ED00502401 /* AppListViewModel.swift */; };
 		34D94BC72858D62000502401 /* AppDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D94BC22858D62000502401 /* AppDetailViewController.swift */; };
 		34D94BCB2858D9AE00502401 /* AppListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D94BC92858D9AE00502401 /* AppListCell.swift */; };
-		34D94BCC2858D9AE00502401 /* AppListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34D94BCA2858D9AE00502401 /* AppListCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +57,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		340FB6492A146E740000D2C9 /* AppListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppListView.swift; sourceTree = "<group>"; };
+		340FB64B2A146F030000D2C9 /* LayoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutView.swift; sourceTree = "<group>"; };
+		340FB6532A1483980000D2C9 /* RxCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxCollectionViewCell.swift; sourceTree = "<group>"; };
+		340FB6552A149A7D0000D2C9 /* AppDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDetailView.swift; sourceTree = "<group>"; };
 		34A476DA2858CA700023D30B /* TopApps.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TopApps.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		34A476DD2858CA700023D30B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		34A476DF2858CA700023D30B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -71,13 +80,11 @@
 		34D8BB07286C6F9900CD47DA /* Preferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
 		34D8BB0E286CA0A100CD47DA /* AppStoreShowable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStoreShowable.swift; sourceTree = "<group>"; };
 		34D94BAF2858D4D300502401 /* CellItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellItem.swift; sourceTree = "<group>"; };
-		34D94BB12858D4E700502401 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		34D94BB52858D5ED00502401 /* AppListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppListViewController.swift; sourceTree = "<group>"; };
 		34D94BB62858D5ED00502401 /* AppListCellItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppListCellItem.swift; sourceTree = "<group>"; };
 		34D94BB82858D5ED00502401 /* AppListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppListViewModel.swift; sourceTree = "<group>"; };
 		34D94BC22858D62000502401 /* AppDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDetailViewController.swift; sourceTree = "<group>"; };
 		34D94BC92858D9AE00502401 /* AppListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppListCell.swift; sourceTree = "<group>"; };
-		34D94BCA2858D9AE00502401 /* AppListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AppListCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,9 +92,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				340FB65F2A15C91E0000D2C9 /* Kingfisher in Frameworks */,
 				34D8BAAE286C171300CD47DA /* ASNetworking in Frameworks */,
 				34A4779F2858D2480023D30B /* RxSwift in Frameworks */,
 				34A4779D2858D2480023D30B /* RxCocoa in Frameworks */,
+				340FB64F2A146F740000D2C9 /* Then in Frameworks */,
+				340FB6522A146FA40000D2C9 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -108,6 +118,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		340FB6612A15CA3F0000D2C9 /* AppListCell */ = {
+			isa = PBXGroup;
+			children = (
+				34D94BC92858D9AE00502401 /* AppListCell.swift */,
+				34D94BB62858D5ED00502401 /* AppListCellItem.swift */,
+			);
+			path = AppListCell;
+			sourceTree = "<group>";
+		};
 		34A476D12858CA700023D30B = {
 			isa = PBXGroup;
 			children = (
@@ -137,6 +156,7 @@
 				34D8BB0D286CA04E00CD47DA /* Protocol */,
 				34D94BAB2858D40700502401 /* UI */,
 				34A476E62858CA710023D30B /* Assets.xcassets */,
+				34A476E82858CA710023D30B /* LaunchScreen.storyboard */,
 				34A476EB2858CA710023D30B /* Info.plist */,
 			);
 			path = TopApps;
@@ -182,8 +202,6 @@
 		34D94BAB2858D40700502401 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				34A476E82858CA710023D30B /* LaunchScreen.storyboard */,
-				34D94BB12858D4E700502401 /* Main.storyboard */,
 				34D8BAAA286B02E000CD47DA /* MainTabBarController.swift */,
 				34D94BAC2858D4C000502401 /* Common */,
 				34D94BB32858D5CE00502401 /* AppList */,
@@ -196,6 +214,8 @@
 			isa = PBXGroup;
 			children = (
 				34D94BAF2858D4D300502401 /* CellItem.swift */,
+				340FB64B2A146F030000D2C9 /* LayoutView.swift */,
+				340FB6532A1483980000D2C9 /* RxCollectionViewCell.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -204,10 +224,9 @@
 			isa = PBXGroup;
 			children = (
 				34D94BB52858D5ED00502401 /* AppListViewController.swift */,
+				340FB6492A146E740000D2C9 /* AppListView.swift */,
 				34D94BB82858D5ED00502401 /* AppListViewModel.swift */,
-				34D94BB62858D5ED00502401 /* AppListCellItem.swift */,
-				34D94BC92858D9AE00502401 /* AppListCell.swift */,
-				34D94BCA2858D9AE00502401 /* AppListCell.xib */,
+				340FB6612A15CA3F0000D2C9 /* AppListCell */,
 			);
 			path = AppList;
 			sourceTree = "<group>";
@@ -216,6 +235,7 @@
 			isa = PBXGroup;
 			children = (
 				34D94BC22858D62000502401 /* AppDetailViewController.swift */,
+				340FB6552A149A7D0000D2C9 /* AppDetailView.swift */,
 			);
 			path = AppDetail;
 			sourceTree = "<group>";
@@ -240,6 +260,9 @@
 				34A4779C2858D2480023D30B /* RxCocoa */,
 				34A4779E2858D2480023D30B /* RxSwift */,
 				34D8BAAD286C171300CD47DA /* ASNetworking */,
+				340FB64E2A146F740000D2C9 /* Then */,
+				340FB6512A146FA40000D2C9 /* SnapKit */,
+				340FB65E2A15C91E0000D2C9 /* Kingfisher */,
 			);
 			productName = TopApps;
 			productReference = 34A476DA2858CA700023D30B /* TopApps.app */;
@@ -316,6 +339,9 @@
 			packageReferences = (
 				34A4779B2858D2480023D30B /* XCRemoteSwiftPackageReference "RxSwift" */,
 				34D8BAAC286C171300CD47DA /* XCRemoteSwiftPackageReference "ASNetworking" */,
+				340FB64D2A146F740000D2C9 /* XCRemoteSwiftPackageReference "Then" */,
+				340FB6502A146FA40000D2C9 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				340FB65D2A15C91E0000D2C9 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = 34A476DB2858CA700023D30B /* Products */;
 			projectDirPath = "";
@@ -333,9 +359,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				34D94BB22858D4E700502401 /* Main.storyboard in Resources */,
 				34A476EA2858CA710023D30B /* LaunchScreen.storyboard in Resources */,
-				34D94BCC2858D9AE00502401 /* AppListCell.xib in Resources */,
 				34A476E72858CA710023D30B /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -365,17 +389,21 @@
 				34D94BCB2858D9AE00502401 /* AppListCell.swift in Sources */,
 				34D8BB08286C6F9900CD47DA /* Preferences.swift in Sources */,
 				34D8BB02286C58A400CD47DA /* TopAppsItem.swift in Sources */,
+				340FB64A2A146E740000D2C9 /* AppListView.swift in Sources */,
 				34D8BAAB286B02E000CD47DA /* MainTabBarController.swift in Sources */,
+				340FB6542A1483980000D2C9 /* RxCollectionViewCell.swift in Sources */,
 				34D94BBA2858D5ED00502401 /* AppListViewController.swift in Sources */,
 				34D94BBB2858D5ED00502401 /* AppListCellItem.swift in Sources */,
 				34D8BB06286C598200CD47DA /* ASNetworking+RxSwift.swift in Sources */,
 				34D94BC72858D62000502401 /* AppDetailViewController.swift in Sources */,
+				340FB6562A149A7D0000D2C9 /* AppDetailView.swift in Sources */,
 				34D94BBD2858D5ED00502401 /* AppListViewModel.swift in Sources */,
 				34D8BB04286C58D600CD47DA /* Server.swift in Sources */,
 				34A476DE2858CA700023D30B /* AppDelegate.swift in Sources */,
 				34A476E02858CA700023D30B /* SceneDelegate.swift in Sources */,
 				34D8BB0F286CA0A100CD47DA /* AppStoreShowable.swift in Sources */,
 				34A477A52858D2A70023D30B /* API.swift in Sources */,
+				340FB64C2A146F030000D2C9 /* LayoutView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -549,9 +577,10 @@
 				INFOPLIST_FILE = TopApps/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -577,9 +606,10 @@
 				INFOPLIST_FILE = TopApps/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -711,6 +741,30 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		340FB64D2A146F740000D2C9 /* XCRemoteSwiftPackageReference "Then" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/devxoul/Then";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
+		340FB6502A146FA40000D2C9 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+		340FB65D2A15C91E0000D2C9 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
 		34A4779B2858D2480023D30B /* XCRemoteSwiftPackageReference "RxSwift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ReactiveX/RxSwift";
@@ -730,6 +784,21 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		340FB64E2A146F740000D2C9 /* Then */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 340FB64D2A146F740000D2C9 /* XCRemoteSwiftPackageReference "Then" */;
+			productName = Then;
+		};
+		340FB6512A146FA40000D2C9 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 340FB6502A146FA40000D2C9 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+		340FB65E2A15C91E0000D2C9 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 340FB65D2A15C91E0000D2C9 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
 		34A4779C2858D2480023D30B /* RxCocoa */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 34A4779B2858D2480023D30B /* XCRemoteSwiftPackageReference "RxSwift" */;

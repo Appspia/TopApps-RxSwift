@@ -26,6 +26,7 @@ class MainTabBarController: UITabBarController {
     func tapViewController(type: AppListType) -> UIViewController {
         let title: String
         let iconName: String
+        
         switch type {
         case .free:
             title = "FREE"
@@ -37,7 +38,8 @@ class MainTabBarController: UITabBarController {
             title = "GROSSING"
             iconName = "trophy"
         }
-        let appListViewController = storyboard?.instantiateViewController(identifier: "AppListViewController") as! AppListViewController
+        
+        let appListViewController = AppListViewController()
         appListViewController.inAppListType.onNext(type)
         let navigationController = UINavigationController(rootViewController: appListViewController)
         navigationController.navigationBar.prefersLargeTitles = true
